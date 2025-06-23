@@ -3,13 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../../services/student.service';
 import { Student } from '../../models/student';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-student-form',
   standalone: true,   // 👈 important
   templateUrl: './student-form.component.html',
   styleUrls: ['./student-form.component.css'],
-  imports: [FormsModule]  // 👈 il faut importer FormsModule ici aussi
+  imports: [FormsModule,CommonModule]  // 👈 il faut importer FormsModule ici aussi
+  
 })
 export class StudentFormComponent implements OnInit {
 

@@ -8,7 +8,7 @@
     providedIn: 'root'
   })
   export class StudentService {
-    private apiUrl = 'http://localhost:8080/api/students';
+    private apiUrl = 'http://localhost:8085/api/students';
   
     constructor(private http: HttpClient) {}
   
