@@ -1,7 +1,28 @@
 <div class="container">
+
     <h2>Student List</h2>
-    <button (click)="addStudent()">Add Student</button>
-    <table border="1" cellpadding="5">
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchKeyword" placeholder="Search students..." />
+        <button (click)="search()">Search</button>
+      </div>
+  
+   
+  
+    <!-- ➕ Bouton d'ajout -->
+    <div style="margin-bottom: 15px;">
+      <button (click)="addStudent()">Add Student</button>
+    </div>
+    <!-- 🔃 Boutons de tri -->
+<div style="margin-bottom: 10px;">
+    <label>Sort by:</label>
+    <button (click)="sort('firstName')">First Name</button>
+    <button (click)="sort('lastName')">Last Name</button>
+    <button (click)="sort('email')">Email</button>
+  </div>
+  
+  
+    <!-- 📋 Tableau des étudiants -->
+    <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; text-align: left;">
       <thead>
         <tr>
           <th>ID</th>
@@ -26,5 +47,66 @@
         </tr>
       </tbody>
     </table>
+    <div class="container">
+
+        <h2>Student List</h2>
+      
+        <!-- 🔍 Barre de recherche -->
+        <div class="search-bar">
+          <input type="text" [(ngModel)]="searchKeyword" placeholder="Search students..." />
+          <button (click)="search()">Search</button>
+        </div>
+      
+        <!-- ➕ Bouton d'ajout -->
+        <div style="margin-bottom: 15px;">
+          <button (click)="addStudent()">Add Student</button>
+        </div>
+      
+        <!-- 🔃 Boutons de tri -->
+        <div style="margin-bottom: 10px;">
+          <label>Sort by:</label>
+          <button (click)="sort('firstName')">First Name</button>
+          <button (click)="sort('lastName')">Last Name</button>
+          <button (click)="sort('email')">Email</button>
+        </div>
+      
+        <!-- 📋 Tableau des étudiants -->
+        <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; text-align: left;">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students">
+              <td>{{ student.id }}</td>
+              <td>{{ student.firstName }}</td>
+              <td>{{ student.lastName }}</td>
+              <td>{{ student.email }}</td>
+              <td>{{ student.department }}</td>
+              <td>
+                <button (click)="editStudent(student.id!)">Edit</button>
+                <button (click)="deleteStudent(student.id!)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <!-- 📄 Pagination -->
+        <mat-paginator
+          [length]="totalElements"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[1, 5, 10, 20]"
+          (page)="onPageChange($event)">
+        </mat-paginator>
+      
+      </div>
+      
+  
   </div>
   

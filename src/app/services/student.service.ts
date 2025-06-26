@@ -1,8 +1,9 @@
 
   import { Injectable } from '@angular/core';
-  import { HttpClient } from '@angular/common/http';
+  import { HttpClient,HttpParams } from '@angular/common/http';
   import { Student } from '../models/student';
   import { Observable } from 'rxjs';
+  
   
   @Injectable({
     providedIn: 'root'
@@ -30,6 +31,16 @@
   
     deleteStudent(id: number): Observable<void> {
       return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    }
+    searchStudents(keyword: string): Observable<Student[]> {
+      return this.http.get<Student[]>(`${this.apiUrl}/search?keyword=${keyword}`);
+    }
+    getSortedStudents(sortBy: string): Observable<Student[]> {
+      return this.http.get<Student[]>(`${this.apiUrl}/sorted?sortBy=${sortBy}`);
+    }
+    getPaginatedStudents(page: number, size: number): Observable<any> {
+      const params = new HttpParams().set('page', page).set('size', size);
+      return this.http.get<any>(`${this.apiUrl}/paginated`, { params });
     }
   }
     
