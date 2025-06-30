@@ -42,5 +42,12 @@
       const params = new HttpParams().set('page', page).set('size', size);
       return this.http.get<any>(`${this.apiUrl}/paginated`, { params });
     }
+    uploadPhoto(id: number, formData: FormData): Observable<any> {
+      return this.http.post(`${this.apiUrl}/upload-photo/${id}`, formData);
+    }
+  
+    getPhotoUrl(filename: string): string {
+      return `${this.apiUrl}/photo/${filename}`;
+    }
   }
     

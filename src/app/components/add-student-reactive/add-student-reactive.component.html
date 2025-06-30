@@ -1,41 +1,42 @@
-<h2>Add Student (Reactive Form)</h2>
-
 <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-
-  <div>
-    <label>First Name:</label>
-    <input formControlName="firstName" />
-    <div *ngIf="studentForm.get('firstName')?.invalid && studentForm.get('firstName')?.touched">
-      First name is required.
+    <div>
+      <label>First Name:</label>
+      <input formControlName="firstName" />
+      <div *ngIf="studentForm.get('firstName')?.invalid && studentForm.get('firstName')?.touched">
+        First name is required.
+      </div>
     </div>
-  </div>
-
-  <div>
-    <label>Last Name:</label>
-    <input formControlName="lastName" />
-    <div *ngIf="studentForm.get('lastName')?.invalid && studentForm.get('lastName')?.touched">
-      Last name is required.
+  
+    <div>
+      <label>Last Name:</label>
+      <input formControlName="lastName" />
+      <div *ngIf="studentForm.get('lastName')?.invalid && studentForm.get('lastName')?.touched">
+        Last name is required.
+      </div>
     </div>
-  </div>
-
-  <div>
-    <label>Email:</label>
-    <input formControlName="email" />
-    <div *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.invalid">
-      <div *ngIf="studentForm.get('email')?.errors?.['required']">Email is required.</div>
-      <div *ngIf="studentForm.get('email')?.errors?.['email']">Invalid email format.</div>
+  
+    <div>
+      <label>Email:</label>
+      <input formControlName="email" />
+      <div *ngIf="studentForm.get('email')?.invalid && studentForm.get('email')?.touched">
+        <div *ngIf="studentForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="studentForm.get('email')?.errors?.['email']">Invalid email format.</div>
+      </div>
     </div>
-  </div>
-
-  <div>
-    <label>Department:</label>
-    <input formControlName="department" />
-    <div *ngIf="studentForm.get('department')?.invalid && studentForm.get('department')?.touched">
-      Department is required.
+  
+    <div>
+      <label>Department:</label>
+      <input formControlName="department" />
+      <div *ngIf="studentForm.get('department')?.invalid && studentForm.get('department')?.touched">
+        Department is required.
+      </div>
     </div>
-  </div>
-
-  <button type="submit" [disabled]="studentForm.invalid">Submit</button>
-
-</form>
-
+  
+    <div>
+      <label>Photo:</label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </div>
+  
+    <button type="submit">Submit</button>
+  </form>
+  
